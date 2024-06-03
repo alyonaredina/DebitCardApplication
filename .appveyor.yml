@@ -14,5 +14,6 @@ install:
   - chmod +x gradlew
 
 build_script:
-  - ./gradlew test --info  # запускаем тест, флаг --info позволяет выводить больше информации
-  - ./gradlew clean test -Selenide.headless=true
+  #- ./gradlew test --info  # запускаем тест, флаг --info позволяет выводить больше информации
+  #- ./gradlew clean test -Selenide.headless=true
+   - ./gradlew clean test --info -Selenide.headless=true
