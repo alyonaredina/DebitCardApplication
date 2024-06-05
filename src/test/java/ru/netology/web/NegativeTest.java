@@ -42,6 +42,17 @@ public class NegativeTest {
     }
 
     @Test
+    void shouldNegativeNoPhone() {
+        open("http://localhost:9999");
+        SelenideElement form = $ (".form");
+        form.$("[data-test-id=name] input").setValue("Алена Редина");
+        form.$("[data-test-id=phone] input").setValue("");
+        form.$("[data-test-id=agreement]").click();
+        form.$(".button__content").click();
+        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+    }
+
+    @Test
     void shouldNegativeCheckbox() {
         open("http://localhost:9999");
         SelenideElement form = $ (".form");
