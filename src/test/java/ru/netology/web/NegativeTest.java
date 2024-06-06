@@ -16,7 +16,7 @@ public class NegativeTest {
         form.$("[data-test-id=phone] input").setValue("+79277970093");
         form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+        $("[data-test-id='name'].input_invalid .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class NegativeTest {
         form.$("[data-test-id=phone] input").setValue("+79277970093");
         form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id='name'].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class NegativeTest {
         form.$("[data-test-id=phone] input").setValue("89277970093");
         form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class NegativeTest {
         form.$("[data-test-id=phone] input").setValue("");
         form.$("[data-test-id=agreement]").click();
         form.$(".button__content").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id='phone'].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
     @Test
@@ -57,10 +57,10 @@ public class NegativeTest {
         open("http://localhost:9999");
         SelenideElement form = $ (".form");
         form.$("[data-test-id=name] input").setValue("Алена Редина");
-        form.$("[data-test-id=phone] input").setValue("89277970093");
+        form.$("[data-test-id=phone] input").setValue("+79277970093");
         form.$("[data-test-id=agreement]");
         form.$(".button__content").click();
-        $("[data-test-id=agreement] .checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
+        $("[data-test-id='agreement'].input_invalid .checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
     }
 
 
